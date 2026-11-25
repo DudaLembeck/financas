@@ -74,7 +74,9 @@ const props = defineProps<{ tipo: Tipo }>();
 
 const titulo = computed(() => (props.tipo === 'receitas' ? 'Receitas' : 'Despesas'));
 const { items, loading, load, add: inserir, update, remove } = useLancamentos(props.tipo);
-const total = computed(() => items.value.reduce((s, l) => s + l.valor, 0));
+const total = computed(() =>
+  items.value.reduce((s: number, l: Lancamento) => s + l.valor, 0)
+);
 
 const modalAberto = ref(false);
 const editando = ref<Lancamento | null>(null);
